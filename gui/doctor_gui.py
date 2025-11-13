@@ -234,22 +234,74 @@ class DoctorWindow(tk.Toplevel):
             return
 
         rec = self.selected_record
-        # Pedir texto de interpretación al doctor
-        texto = simpledialog.askstring("Interpretación", "Ingresa la descripción/interpretación clínica:")
-        if texto is None:
-            return  # cancelado
+        # Crear ventana modal grande para la interpretación
+        ventana = tk.Toplevel(self)
+        ventana.title("Interpretación Clínica ECG")
+        ventana.geometry("800x500")
+        ventana.configure(bg="#fff")
+        ventana.resizable(True, True)
+        ventana.grab_set()  # Modal
 
-        # Cargar descripciones previas
-        descs = self.leer_json(DESC_FILE)
-        nueva = {
-            "obs_id": f"o{int(datetime.utcnow().timestamp())}",
-            "record_id": rec["record_id"],
-            "patient_doc": rec["patient_doc"],
-            "timestamp": datetime.utcnow().isoformat(),
-            "author": self.usuario,
-            "text": texto
-        }
-        descs.append(nueva)
-        self.guardar_json(DESC_FILE, descs)
-        messagebox.showinfo("Guardado", "Descripción guardada en descripcion_ecg.json")
+        # Cabecera
+        header = tk.Frame(ventana, bg="#b71c1c", height=50)
+        header.pack(fill="x", side="top")
+        tk.Label(header, text="Ingresa la Descripción/Interpretación Clínica", 
+                 font=("Arial", 14, "bold"), fg="#fff", bg="#b71c1c").pack(pady=10)
+
+        # Información del registro
+        info_frame = tk.Frame(ventana, bg="#f7f7f7", padx=10, pady=8)
+        info_frame.pack(fill="x")
+        info_text = f"Registro: {rec['record_id']} | Paciente: {rec['patient_doc']} | {rec['timestamp']}"
+        tk.Label(info_frame, text=info_text, font=("Arial", 10), bg="#f7f7f7", fg="#555").pack(anchor="w")
+
+        # Área de texto grande
+        text_frame = tk.Frame(ventana, bg="#fff", padx=10, pady=10)
+        text_frame.pack(fill="both", expand=True)
+        
+        tk.Label(text_frame, text="Observaciones:", font=("Arial", 11, "bold"), bg="#fff", fg="#b71c1c").pack(anchor="w", pady=(0, 5))
+        
+        text_widget = tk.Text(text_frame, height=15, width=90, font=("Arial", 11), 
+                              bg="#fff", fg="#222", relief="solid", bd=1, wrap="word")
+        text_widget.pack(fill="both", expand=True, side="left")
+
+        # Scrollbar
+        scrollbar = tk.Scrollbar(text_frame, command=text_widget.yview)
+        scrollbar.pack(side="right", fill="y", padx=(5, 0))
+        text_widget.config(yscrollcommand=scrollbar.set)
+
+        # Botones
+        btn_frame = tk.Frame(ventana, bg="#f7f7f7", padx=10, pady=10)
+        btn_frame.pack(fill="x", side="bottom")
+
+        def guardar_interpretacion():
+            texto = text_widget.get("1.0", tk.END).strip()
+            if not texto:
+                messagebox.showwarning("Aviso", "Por favor, ingresa una descripción.")
+                return
+            
+            # Cargar descripciones previas
+            descs = self.leer_json(DESC_FILE)
+            nueva = {
+                "obs_id": f"o{int(datetime.utcnow().timestamp())}",
+                "record_id": rec["record_id"],
+                "patient_doc": rec["patient_doc"],
+                "timestamp": datetime.utcnow().isoformat(),
+                "author": self.usuario,
+                "text": texto
+            }
+            descs.append(nueva)
+            self.guardar_json(DESC_FILE, descs)
+            messagebox.showinfo("Guardado", "Descripción guardada correctamente en descripcion_ecg.json")
+            ventana.destroy()
+
+        def cancelar():
+            ventana.destroy()
+
+        btn_style = {"font": ("Arial", 11, "bold"), "bg": "#b71c1c", "fg": "#fff", 
+                     "activebackground": "#d32f2f", "activeforeground": "#fff", "relief": "flat", "height": 2}
+        
+        tk.Button(btn_frame, text="Guardar Descripción", command=guardar_interpretacion, 
+                  width=20, **btn_style).pack(side="left", padx=5)
+        tk.Button(btn_frame, text="Cancelar", command=cancelar, 
+                  width=20, bg="#999", activebackground="#bbb", **{k: v for k, v in btn_style.items() if k != "bg"}).pack(side="left", padx=5)
 
