@@ -14,10 +14,10 @@
         "usuario": "drgarcia",
         "contrasena": "123",
         "rol": "doctor",
-        "nombre": "Juan Gabriel Garc\u00c3\u00ada",
+        "nombre": "Juan Gabriel Garcia",
         "documento": "1023456789",
         "especialidad": "Cardiolog\u00c3\u00ada",
-        "edad": 47,
+        "edad": "47",
         "correo": "j.garcia@clinicacorazon.com"
     },
     {
@@ -58,7 +58,7 @@
     {
         "id": "p003",
         "usuario": "juanito",
-        "contrasena": "juanitoKid8",
+        "contrasena": "juanito",
         "rol": "paciente",
         "nombre": "Juanito Rodriguez",
         "documento": "1203456789",
@@ -72,7 +72,35 @@
         "id": "p004",
         "nombre": "Pablo Marquez",
         "documento": "1023324870",
-        "password": "pablo1",
-        "rol": "paciente"
+        "contrasena": "pablo1",
+        "rol": "paciente",
+        "usuario": "Pablito2",
+        "edad": "20",
+        "correo": "pablom@gmail.com",
+        "peso": "70",
+        "altura": "1.70"
+    },
+    {
+        "id": "p005",
+        "usuario": "Jgomez1",
+        "contrasena": "12345.b",
+        "rol": "paciente",
+        "nombre": "Juan Pablo G\u00f3mez",
+        "documento": "1023345739",
+        "edad": "19",
+        "correo": "jpgomez@outlook.com",
+        "peso": "68",
+        "altura": "1.60"
+    },
+    {
+        "id": "d003",
+        "usuario": "Edwuard12l",
+        "contrasena": "doc321",
+        "rol": "doctor",
+        "nombre": "Edwuardo Llinas",
+        "documento": "41108765",
+        "edad": "45",
+        "correo": "edwardlli@outlook.com",
+        "especialidad": "Cardiolog\u00eda"
     }
 ]
