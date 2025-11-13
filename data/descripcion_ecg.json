@@ -1,0 +1,47 @@
+[
+  {
+    "id_registro": "R001",
+    "id_paciente": "P001",
+    "nombre_archivo": "paciente_001_ecg.csv",
+    "frecuencia_cardiaca_bpm": 78,
+    "diagnostico_automatico": "Ritmo sinusal normal. No se evidencian alteraciones significativas.",
+    "observaciones_medico": "Paciente estable. Control cada 6 meses.",
+    "fecha_registro": "2025-11-06 09:15:23"
+  },
+  {
+    "id_registro": "R002",
+    "id_paciente": "P002",
+    "nombre_archivo": "paciente_002_ecg.csv",
+    "frecuencia_cardiaca_bpm": 105,
+    "diagnostico_automatico": "Taquicardia sinusal leve. Posible estrés o ansiedad.",
+    "observaciones_medico": "Revisar consumo de cafeína. Control en 1 mes.",
+    "fecha_registro": "2025-11-06 09:20:41"
+  },
+  {
+    "id_registro": "R003",
+    "id_paciente": "P003",
+    "nombre_archivo": "paciente_003_ecg.csv",
+    "frecuencia_cardiaca_bpm": 56,
+    "diagnostico_automatico": "Bradicardia sinusal leve. Puede ser fisiológica (paciente deportista).",
+    "observaciones_medico": "Sin signos de alarma. Control anual.",
+    "fecha_registro": "2025-11-06 09:26:02"
+  },
+  {
+    "id_registro": "R004",
+    "id_paciente": "P004",
+    "nombre_archivo": "paciente_004_ecg.csv",
+    "frecuencia_cardiaca_bpm": 82,
+    "diagnostico_automatico": "Ritmo sinusal con presencia de extrasístoles ventriculares aisladas.",
+    "observaciones_medico": "Solicitar Holter de 24 horas.",
+    "fecha_registro": "2025-11-06 09:32:17"
+  },
+  {
+    "id_registro": "R005",
+    "id_paciente": "P005",
+    "nombre_archivo": "paciente_005_ecg.csv",
+    "frecuencia_cardiaca_bpm": 74,
+    "diagnostico_automatico": "Ritmo sinusal normal. Patrón compatible con paciente joven entrenado.",
+    "observaciones_medico": "Sin hallazgos patológicos.",
+    "fecha_registro": "2025-11-06 09:38:09"
+  }
+]

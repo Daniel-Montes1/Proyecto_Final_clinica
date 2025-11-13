@@ -1,0 +1,6 @@
+id_registro,id_paciente,id_doctor,documento_paciente,fecha,diagnostico,archivo_senal,frecuencia_muestreo,notas
+r001,p001,d001,1134567890,2025-11-06,"Ritmo sinusal normal","senales_ecg/paciente_001_ecg.csv",250,"ECG en reposo; patrón sinusal."
+r002,p002,d002,1156789023,2025-11-06,"Taquicardia sinusal leve","senales_ecg/paciente_002_ecg.csv",250,"Posible efecto por actividad o ansiedad."
+r003,p003,d002,1203456789,2025-11-06,"Bradicardia sinusal leve","senales_ecg/paciente_003_ecg.csv",250,"Probablemente fisiológica; valorar clínica."
+r004,p004,d001,1192837465,2025-11-06,"Extrasístoles ventriculares aisladas","senales_ecg/paciente_004_ecg.csv",250,"Se observan latidos prematuros aislados."
+r005,p005,d001,1056789123,2025-11-06,"Ritmo sinusal (paciente joven)","senales_ecg/paciente_005_ecg.csv",250,"Paciente deportista; patrón de baja FC relativa."

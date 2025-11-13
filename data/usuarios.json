@@ -1,0 +1,78 @@
+[
+    {
+        "id": "a001",
+        "usuario": "admin1",
+        "contrasena": "admin123",
+        "rol": "admin",
+        "nombre": "Alejandro",
+        "documento": "000",
+        "edad": 20,
+        "correo": "admin@clinicacorazon.com"
+    },
+    {
+        "id": "d001",
+        "usuario": "drgarcia",
+        "contrasena": "123",
+        "rol": "doctor",
+        "nombre": "Juan Gabriel Garc\u00c3\u00ada",
+        "documento": "1023456789",
+        "especialidad": "Cardiolog\u00c3\u00ada",
+        "edad": 47,
+        "correo": "j.garcia@clinicacorazon.com"
+    },
+    {
+        "id": "d002",
+        "usuario": "drsanchez",
+        "contrasena": "anitaS#2025",
+        "rol": "doctor",
+        "nombre": "Ana Maria Sanchez",
+        "documento": "1056789123",
+        "especialidad": "Electrofisiologia",
+        "edad": 41,
+        "correo": "a.sanchez@clinicacorazon.com"
+    },
+    {
+        "id": "p001",
+        "usuario": "pedroperez",
+        "contrasena": "perez2025",
+        "rol": "paciente",
+        "nombre": "Pedro Perez",
+        "documento": "1134567890",
+        "edad": 54,
+        "peso": 78.5,
+        "altura": 1.72,
+        "correo": "pedro.perez@example.com"
+    },
+    {
+        "id": "p002",
+        "usuario": "mariaortega",
+        "contrasena": "mariaO-25",
+        "rol": "paciente",
+        "nombre": "Maria Ortega",
+        "documento": "1156789023",
+        "edad": 32,
+        "peso": 65.0,
+        "altura": 1.65,
+        "correo": "m.ortega@example.com"
+    },
+    {
+        "id": "p003",
+        "usuario": "juanito",
+        "contrasena": "juanitoKid8",
+        "rol": "paciente",
+        "nombre": "Juanito Rodriguez",
+        "documento": "1203456789",
+        "edad": 8,
+        "peso": 28.0,
+        "altura": 1.25,
+        "correo": "cuidador.juanito@example.com",
+        "notas": "Paciente pediatrico; seguimiento por paralisis cerebral leve."
+    },
+    {
+        "id": "p004",
+        "nombre": "Pablo Marquez",
+        "documento": "1023324870",
+        "password": "pablo1",
+        "rol": "paciente"
+    }
+]
