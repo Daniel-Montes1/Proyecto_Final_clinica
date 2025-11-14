@@ -7,7 +7,7 @@ almacenado en usuarios.json, se redirige a la interfaz correspondiente.
 """
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import  messagebox
 import json
 from .admin_gui import AdminWindow
 from .doctor_gui import DoctorWindow
