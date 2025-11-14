@@ -43,5 +43,13 @@
     "diagnostico_automatico": "Ritmo sinusal normal. Patrón compatible con paciente joven entrenado.",
     "observaciones_medico": "Sin hallazgos patológicos.",
     "fecha_registro": "2025-11-06 09:38:09"
+  },
+  {
+    "obs_id": "o1763097992",
+    "record_id": "r001",
+    "patient_doc": "1134567890",
+    "timestamp": "2025-11-14T00:26:32.784441",
+    "author": "drgarcia",
+    "text": "falsa alarma no es cancer, es parkinson"
   }
 ]

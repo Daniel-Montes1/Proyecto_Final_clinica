@@ -254,7 +254,8 @@ class PacienteWindow(tk.Toplevel):
             # texto puede estar en distintas claves
             texto = d.get("text") or d.get("diagnostico_automatico") or d.get("observaciones_medico") or ""
             self.text_obs.insert(tk.END, f"[{fecha}] {autor}:\n{texto}\n\n")
-
+        # Dejar el widget en modo solo lectura para el paciente
+        self.text_obs.config(state='disabled')
     def guardar_comentarios_paciente(self):
         """Guarda los comentarios del paciente en un archivo JSON."""
         if not self.selected_record:
@@ -288,5 +289,3 @@ class PacienteWindow(tk.Toplevel):
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
-        # Dejar el widget en modo solo lectura para el paciente
-        self.text_obs.config(state='disabled')
