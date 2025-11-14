@@ -80,8 +80,19 @@ class PacienteWindow(tk.Toplevel):
 
         # Área para observaciones
         tk.Label(right, text="Observaciones médicas:", font=("Arial", 10, "bold"), fg="#b71c1c", bg="#fff").pack(pady=5)
-        self.text_obs = tk.Text(right, height=8, font=("Arial", 10), bg="#fff", fg="#222", relief="solid", bd=1)
+        # Mostrar observaciones del médico en modo solo lectura (el paciente no puede editar aquí)
+        self.text_obs = tk.Text(right, height=4, font=("Arial", 10), bg="#fff", fg="#222", relief="solid", bd=1, state='disabled')
         self.text_obs.pack(fill="x", padx=10, pady=5)
+
+        # Área para comentarios del paciente
+        tk.Label(right, text="Tus comentarios/observaciones:", font=("Arial", 10, "bold"), fg="#b71c1c", bg="#fff").pack(pady=(10, 5))
+        self.text_comentarios = tk.Text(right, height=6, font=("Arial", 10), bg="#fff", fg="#222", relief="solid", bd=1, wrap="word")
+        self.text_comentarios.pack(fill="both", expand=True, padx=10, pady=5)
+
+        # Botón para guardar comentarios
+        tk.Button(right, text="Guardar mis comentarios", command=self.guardar_comentarios_paciente,
+              font=("Arial", 10, "bold"), bg="#b71c1c", fg="#fff", activebackground="#d32f2f",
+              activeforeground="#fff", relief="flat", height=2).pack(fill="x", padx=10, pady=5)
 
         # Estado interno
         self.current_records = []
@@ -228,9 +239,12 @@ class PacienteWindow(tk.Toplevel):
             if d.get("record_id") == rec_id or d.get("id_registro") == rec_id or d.get("id_registro", "").lower() == rec_id.lower():
                 asociadas.append(d)
 
+        # Activar temporalmente el widget para actualizar su contenido, luego volver a deshabilitar
+        self.text_obs.config(state='normal')
         self.text_obs.delete("1.0", tk.END)
         if not asociadas:
             self.text_obs.insert(tk.END, "No hay observaciones para este registro.")
+            self.text_obs.config(state='disabled')
             return
 
         for d in asociadas:
@@ -240,3 +254,39 @@ class PacienteWindow(tk.Toplevel):
             # texto puede estar en distintas claves
             texto = d.get("text") or d.get("diagnostico_automatico") or d.get("observaciones_medico") or ""
             self.text_obs.insert(tk.END, f"[{fecha}] {autor}:\n{texto}\n\n")
+
+    def guardar_comentarios_paciente(self):
+        """Guarda los comentarios del paciente en un archivo JSON."""
+        if not self.selected_record:
+            messagebox.showwarning("Aviso", "Selecciona primero un registro para agregar comentarios.")
+            return
+
+        comentario = self.text_comentarios.get("1.0", tk.END).strip()
+        if not comentario:
+            messagebox.showwarning("Aviso", "Por favor escribe algún comentario antes de guardar.")
+            return
+
+        from datetime import datetime
+        
+        comentarios_file = os.path.join(DATA_DIR, "comentarios_paciente.json")
+        comentarios = self.leer_json(comentarios_file)
+        nuevo = {
+            "id": f"c{int(datetime.utcnow().timestamp())}",
+            "paciente": self.usuario,
+            "record_id": self.selected_record["record_id"],
+            "patient_doc": self.selected_record.get("patient_doc", ""),
+            "timestamp": datetime.utcnow().isoformat(),
+            "comentario": comentario
+        }
+        comentarios.append(nuevo)
+        self.guardar_json(comentarios_file, comentarios)
+        messagebox.showinfo("Éxito", "Comentario guardado correctamente.")
+        self.text_comentarios.delete("1.0", tk.END)
+
+    def guardar_json(self, path, data):
+        """Guarda data en un archivo JSON."""
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+        # Dejar el widget en modo solo lectura para el paciente
+        self.text_obs.config(state='disabled')

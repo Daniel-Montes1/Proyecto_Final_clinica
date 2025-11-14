@@ -76,10 +76,18 @@ class DoctorWindow(tk.Toplevel):
         # Frame para botones de acción (siempre visible abajo)
         btns_frame = tk.Frame(left, bg="#f7f7f7")
         btns_frame.pack(side="bottom", fill="x", pady=(8, 0))
-        btn_style = {"font": ("Arial", 11, "bold"), "bg": "#b71c1c", "fg": "#fff", "activebackground": "#d32f2f", "activeforeground": "#fff", "relief": "flat", "height": 2}
-        tk.Button(btns_frame, text="Mostrar Señal", command=self.mostrar_senal, **btn_style).pack(fill="x", pady=2)
-        tk.Button(btns_frame, text="Generar / Guardar Descripción", command=self.generar_descripcion, **btn_style).pack(fill="x", pady=2)
-        tk.Button(btns_frame, text="Salir", command=self.destroy, **btn_style).pack(fill="x", pady=2)
+
+        # Botón principal más grande para Generar/Guardar Descripción
+        tk.Button(btns_frame, text="Generar / Guardar\nDescripción", command=self.generar_descripcion,
+              font=("Arial", 12, "bold"), bg="#b71c1c", fg="#fff", activebackground="#d32f2f",
+              activeforeground="#fff", relief="flat", height=3, pady=8).pack(fill="x", pady=2)
+
+        # Frame para botones secundarios (Mostrar Señal + Salir)
+        secondary_btns = tk.Frame(btns_frame, bg="#f7f7f7")
+        secondary_btns.pack(fill="x", pady=(0, 0))
+        btn_style = {"font": ("Arial", 10, "bold"), "bg": "#b71c1c", "fg": "#fff", "activebackground": "#d32f2f", "activeforeground": "#fff", "relief": "flat", "height": 2}
+        tk.Button(secondary_btns, text="Mostrar Señal", command=self.mostrar_senal, **btn_style).pack(fill="both", expand=True, side="left", padx=1, pady=1)
+        tk.Button(secondary_btns, text="Salir", command=self.destroy, **btn_style).pack(fill="both", expand=True, side="left", padx=1, pady=1)
 
         # ---- Right: gráfica ----
         self.fig = Figure(figsize=(7,4), dpi=100)
